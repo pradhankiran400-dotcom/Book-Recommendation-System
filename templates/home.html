@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/CSS/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <nav>
+            <ul>
+                <li class="nav-item">My Book Recommendor</li>
+                <li id="home"><a href="/">🏠 Home</a></li>
+                <li id="recommendations"><a href="/recommendations">📕 Recommendations</a></li>
+                <li id="about"><a href="/about">ℹ️ About</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Top 50 books📖</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="books-container">
+    {% if book_names %}
+        {% for i in range(book_names|length) %}
+        <div class="card">
+            <img src="{{ image_urls[i] }}" onerror="this.onerror=null; this.src='/static/default_book.png';" alt="Book Cover">
+            <h3>{{ book_names[i] }}</h3>
+            <p>{{ author_names[i] }}</p>
+            <p>votes - {{ votes[i] | round(2) }}</p>
+            <p>rating - {{ rating[i] | round(2) }}</p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="card">
+            <img src="/static/default_book.png" alt="Not Available">
+            <h3>Book Not Available</h3>
+            <p>No Author Data</p>
+            <p>votes - 0</p>
+            <p>rating - 0</p>
+        </div>
+    {% endif %}
+    </div>
+</body>
+</html>

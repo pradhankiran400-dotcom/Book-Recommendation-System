@@ -1,0 +1,17 @@
+# --- Web Framework & Server ---
+fastapi
+uvicorn[standard]
+
+# --- Frontend & Templating ---
+jinja2
+python-multipart
+
+# --- Machine Learning & Data Handling ---
+pandas
+numpy
+scikit-learn
+joblib
+
+# --- Utility ---
+python-dotenv
+jinja2
