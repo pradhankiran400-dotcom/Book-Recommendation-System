@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/CSS/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <nav>
+            <ul>
+                <li class="nav-item">My Book Recommendor</li>
+                <li id="home"><a href="/">🏠 Home</a></li>
+                <li id="recommendations"><a href="/recommendations">📕 Recommendations</a></li>
+                <li id="about"><a href="/about">ℹ️ About</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="about-container">
+        <h1 class="about-main-title">Project Documentation 🛠️</h1>
+        
+        <div class="about-section">
+            <h2>✨ System Overview</h2>
+            <p>A sleek, modern, and fully responsive web application built using <strong>FastAPI</strong> and <strong>Python</strong> that displays top-rated books and provides personalized collaborative book recommendations.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-col">
+                <div class="about-section">
+                    <h2>🚀 Tech Stack</h2>
+                    <ul class="tech-list">
+                        <li><strong>Backend:</strong> Python, FastAPI, Uvicorn, Jinja2</li>
+                        <li><strong>Data Processing:</strong> Pandas, Numpy, Pickle</li>
+                        <li><strong>Frontend:</strong> HTML5, CSS3 (Flexbox & Grid Layouts)</li>
+                    </ul>
+                </div>
+                
+                <div class="about-section">
+                    <h2>💎 Key Features</h2>
+                    <ul class="feature-list">
+                        <li>Top 50 Dynamic Dashboard Display</li>
+                        <li>Vector Similarity-based Book Recommendations</li>
+                        <li>Automatic handling for broken cover image links</li>
+                        <li>Custom global 404 Exception Fallback Handler</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="about-col">
+                <div class="about-section">
+                    <h2>📁 Repository Structure</h2>
+                    <pre class="code-block"><code>BOOK-RECOMMENDOR/
+├── static/
+│   ├── CSS/
+│   │   └── style.css
+│   └── js/
+│       └── app.js
+├── templates/
+│   ├── 404.html
+│   ├── home.html
+│   ├── about.html
+│   └── recommendations.html
+├── app.py
+├── model.py
+├── popular.pkl
+└── requirements.txt</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

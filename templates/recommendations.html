@@ -10,24 +10,80 @@
     <div class="navbar">
         <nav>
             <ul>
-                <li class="nav-item">My Book Recommendor</li>
+                <li class="nav-item brand-container">
+                    <span>My Book Recommendor</span>
+                </li>
                 <li id="home"><a href="/">🏠 Home</a></li>
                 <li id="recommendations"><a href="/recommendations">📕 Recommendations</a></li>
                 <li id="about"><a href="/about">ℹ️ About</a></li>
             </ul>
         </nav>
     </div>
+
     <div>
-    <h1>Recommendations Section</h1>
-    <div class = "recommendations-container">
-        <div class = "recommendations-row">
-            <div class = "recommendations-col-12">
-                <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Enter a book name">
-                    <button class="search-btn">Get Recommendations</button>
+        <h1 style="text-align: center; margin-top: 30px;">Recommendations Section</h1>
+        <div class="recommendations-container">
+            <div class="recommendations-row">
+                <div class="recommendations-col-12">
+                    <form action="/recommend" method="get" class="search-container" autocomplete="off">
+                        <input type="text" id="book-search" name="book_name" class="search-input" placeholder="Enter a book name" required list="book-suggestions">
+                        <datalist id="book-suggestions"></datalist>
+                        <button type="submit" class="search-btn">Get Recommendations</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+
+    {% if error %}
+    <div style="text-align: center; margin: 20px 0;">
+        <h3 style="color: rgb(253, 81, 81); font-family: sans-serif;">⚠️ {{ error }}</h3>
+        <a href="/recommendations" class="back-btn" style="text-decoration: none; display: inline-block; margin-top: 10px;">Clear Search</a>
+    </div>
+    {% endif %}
+
+    {% if data %}
+    <div style="text-align: center; margin: 20px 0;">
+        <a href="/recommendations" class="back-btn" style="text-decoration: none; display: inline-block; background-color: rgb(253, 81, 81); color: black;">🔄 Clear & Refresh</a>
+    </div>
+
+    <div class="books-container">
+        {% for book in data %}
+        <div class="card">
+            <img src="{{ book[2] }}" onerror="this.onerror=null; this.src='/static/default_book.png';" alt="Book Cover">
+            <h3>{{ book[0] }}</h3>
+            <p>{{ book[1] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <script>
+        const searchInput = document.getElementById('book-search');
+        const dataList = document.getElementById('book-suggestions');
+
+        searchInput.addEventListener('input', async function() {
+            const query = this.value;
+            
+            if (query.length < 2) {
+                dataList.innerHTML = '';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/suggest-books?q=${encodeURIComponent(query)}`);
+                const suggestions = await response.json();
+                
+                dataList.innerHTML = '';
+                suggestions.forEach(book => {
+                    const option = document.createElement('option');
+                    option.value = book;
+                    dataList.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Suggestions fetch karne mein dikkat aayi:", error);
+            }
+        });
+    </script>
 </body>
 </html>
