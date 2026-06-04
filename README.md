@@ -25,6 +25,8 @@ BOOK-RECOMMENDOR/
 ├── templates/
 │   ├── 404.html
 │   └── home.html
+|   └── recommendation.html
+|
 ├── venv/
 ├── app.py
 ├── model.py
