@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 import numpy as np
+import gc
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import pickle
@@ -11,6 +12,8 @@ popular_df = pickle.load(open("popular.pkl", "rb"))
 pt = pickle.load(open("pt.pkl", "rb"))
 books = pickle.load(open("books.pkl", "rb"))
 similarity_scores = pickle.load(open("similarity_scores.pkl", "rb"))
+
+gc.collect()
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
